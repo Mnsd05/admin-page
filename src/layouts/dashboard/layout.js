@@ -13,7 +13,7 @@ const LayoutRoot = styled('div')(({ theme }) => ({
   maxWidth: '100%',
   [theme.breakpoints.up('lg')]: {
     paddingLeft: SIDE_NAV_WIDTH
-  }
+  },
 }));
 
 const LayoutContainer = styled('div')({

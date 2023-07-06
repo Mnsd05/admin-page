@@ -80,6 +80,7 @@ const useChartOptions = () => {
     },
     yaxis: {
       labels: {
+        formatter: (value) => `${value}s`,
         offsetX: -10,
         style: {
           colors: theme.palette.text.secondary,
@@ -89,22 +90,22 @@ const useChartOptions = () => {
   };
 };
 
-export const OverviewSales = (props) => {
+export const OverviewAverageResponse = (props) => {
   const { chartSeries, sx } = props;
   const chartOptions = useChartOptions();
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Monthly active users" sx={{ textAlign: "center" }} />
+      <CardHeader title="Average response time" sx={{ textAlign: "center" }} />
       <CardContent>
-        <Chart height={350} options={chartOptions} series={chartSeries} type="line" width="100%" />
+        <Chart height={350} options={chartOptions} series={chartSeries} type="bar" width="100%" />
       </CardContent>
       <Divider />
     </Card>
   );
 };
 
-OverviewSales.protoTypes = {
+OverviewAverageResponse.protoTypes = {
   chartSeries: PropTypes.array.isRequired,
   sx: PropTypes.object,
 };

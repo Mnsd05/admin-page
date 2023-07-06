@@ -6,6 +6,7 @@ import {
   paperClasses,
   tableCellClasses
 } from '@mui/material';
+import { inc } from 'nprogress';
 
 // Used only to create transitions
 const muiTheme = createTheme();
@@ -102,7 +103,8 @@ export function createComponents(config) {
           flex: '1 1 auto',
           flexDirection: 'column',
           minHeight: '100%',
-          width: '100%'
+          width: '100%',
+          counterReset: 'step',
         },
         '#__next': {
           display: 'flex',

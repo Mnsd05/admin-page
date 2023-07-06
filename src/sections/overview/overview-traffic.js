@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import ComputerDesktopIcon from '@heroicons/react/24/solid/ComputerDesktopIcon';
-import DeviceTabletIcon from '@heroicons/react/24/solid/DeviceTabletIcon';
-import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon';
+import HandThumbUpIcon from "@heroicons/react/24/solid/HandThumbUpIcon";
+import HandThumbDownIcon from "@heroicons/react/24/solid/HandThumbDownIcon";
 import {
   Box,
   Card,
@@ -24,14 +23,13 @@ const useChartOptions = (labels) => {
     colors: [
       theme.palette.primary.main,
       theme.palette.success.main,
-      theme.palette.warning.main
     ],
     dataLabels: {
       enabled: false
     },
     labels,
     legend: {
-      show: false
+      show: true
     },
     plotOptions: {
       pie: {
@@ -63,21 +61,16 @@ const useChartOptions = (labels) => {
 };
 
 const iconMap = {
-  Desktop: (
+  Positive: (
     <SvgIcon>
-      <ComputerDesktopIcon />
+      <HandThumbUpIcon />
     </SvgIcon>
   ),
-  Tablet: (
+  Negative: (
     <SvgIcon>
-      <DeviceTabletIcon />
+      <HandThumbDownIcon />
     </SvgIcon>
   ),
-  Phone: (
-    <SvgIcon>
-      <PhoneIcon />
-    </SvgIcon>
-  )
 };
 
 export const OverviewTraffic = (props) => {
@@ -86,15 +79,9 @@ export const OverviewTraffic = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Traffic Source" />
+      <CardHeader title="Feedback Rate" sx={{ textAlign: "center" }} />
       <CardContent>
-        <Chart
-          height={300}
-          options={chartOptions}
-          series={chartSeries}
-          type="donut"
-          width="100%"
-        />
+        <Chart height={300} options={chartOptions} series={chartSeries} type="pie" width="100%" />
         <Stack
           alignItems="center"
           direction="row"
@@ -109,22 +96,16 @@ export const OverviewTraffic = (props) => {
               <Box
                 key={label}
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center'
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
                 }}
               >
                 {iconMap[label]}
-                <Typography
-                  sx={{ my: 1 }}
-                  variant="h6"
-                >
+                <Typography sx={{ my: 1 }} variant="h6">
                   {label}
                 </Typography>
-                <Typography
-                  color="text.secondary"
-                  variant="subtitle2"
-                >
+                <Typography color="text.secondary" variant="subtitle2">
                   {item}%
                 </Typography>
               </Box>
